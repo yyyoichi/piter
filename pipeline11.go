@@ -32,7 +32,7 @@ func FunOut11[I, O any](ctx context.Context, src iter.Seq[I], fn func(I) O) iter
 	inCh := newChan(ctx, src)
 
 	c := runtime.GOMAXPROCS(0)
-	outChs := make([]chan O, 0, c)
+	outChs := make([]chan O, c)
 	for i := range c {
 		outCh := make(chan O)
 		go func() {
